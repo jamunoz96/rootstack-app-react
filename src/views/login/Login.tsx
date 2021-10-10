@@ -2,8 +2,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
-import { getUserAction, loginAction } from "../../redux/auth/authActions";
-import AuthStore from "../../redux/types/AuthStore.type";
+import { getUserAction, loginAction } from "../../redux/actions/authActions";
+import AuthStore from "../../redux/types/AuthStore";
 import { globalDispatch } from "../../redux/utils/globalDispatch";
 
 const Login = () => {

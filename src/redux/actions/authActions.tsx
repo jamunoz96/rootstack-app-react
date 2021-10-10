@@ -1,5 +1,5 @@
 import { apiGetUser, apiLogin } from '../../services/auth/auth';
-import { GET_USER, LOADING, LOGIN, LOGOUT, REQUEST_ERROR } from './authReducer';
+import { GET_USER, LOADING, LOGIN, LOGOUT, REQUEST_ERROR } from '../reducers/authReducer';
 
 const _LOGIN = (token: string ) => ({
     type: LOGIN,

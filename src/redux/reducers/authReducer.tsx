@@ -1,4 +1,4 @@
-import AuthStore from "../types/AuthStore.type";
+import AuthStore from "../types/AuthStore";
 
 export const LOADING = 'auth/LOADING';
 export const LOGIN = 'auth/LOGIN';

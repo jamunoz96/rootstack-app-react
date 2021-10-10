@@ -1,10 +1,16 @@
-import JobStore from "../types/JobStore.type";
+import JobStore from "../types/JobStore";
 
 export const GET_JOBS = 'auth/GET_JOBS';
 export const REQUEST_ERROR = 'auth/REQUEST_ERROR';
 
+const getCurrentPage = () : number => {
+  const current = localStorage.getItem("current_page_jobs");
+  if(current) return parseInt(current);
+  else return 1;
+}
+
 const initialState : JobStore  = {
-  current_page: 0,
+  current_page: getCurrentPage(),
   data: [],
   last_page: 0,
   total: 0

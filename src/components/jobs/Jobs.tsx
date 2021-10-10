@@ -1,16 +1,23 @@
-import { useEffect } from "react";
-import { getJobsAction } from "../../redux/jobs/jobActions";
+import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { backJobsAction, currentJobsAction, getJobsAction, nextJobsAction } from "../../redux/actions/jobActions";
 import { globalDispatch } from "../../redux/utils/globalDispatch";
 import JobList from "./JobList";
 import JobStats from "./JobStats";
-import "./jobs.scss"
 import Map from "../Map/Map";
+import "./jobs.scss"
 
 const Jobs = () => {
 
+    const {current_page, last_page} = useSelector((state : any) => state.job);
     useEffect(() => {
-        globalDispatch(getJobsAction());
+        if(current_page === 1) globalDispatch(getJobsAction());
+        else if (current_page > 1) globalDispatch(currentJobsAction());
+        // eslint-disable-next-line
     }, []);
+
+    const handleNextPage = () => globalDispatch(nextJobsAction());
+    const handleBackPage = () => globalDispatch(backJobsAction());
 
     return <>
         <div className="mt-4 mb-4">
@@ -25,18 +32,23 @@ const Jobs = () => {
                         </div>
                     </div>
                     <JobList />
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                        {
+                            current_page === 1 ? "" :
+                            <button onClick={handleBackPage} className="btn btn-dark me-md-2" type="button">Back</button>
+                        }
+                        {
+                            last_page === current_page ? "" :
+                            <button onClick={handleNextPage} className="btn btn-dark" type="button">Next</button>
+                        }
+                    </div>
                 </div>
                 <div className="col-md-5">
-                    <Map
-                        isMarkerShown
+                    <Map 
                         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2NvJQg_BTuL3ziQ1733izl0NjyjRJyWE&v=3.exp&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `650px` }} />}
+                        containerElement={<div style={{ height: `700px` }} />}
                         mapElement={<div style={{ height: `100%` }} />} />
-
-                    <div className="badge">
-                        <button>Siguiente</button>
-                    </div>
                 </div>
             </div>
         </div>

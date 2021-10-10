@@ -1,9 +1,9 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Home from '../views/home/Home'
+import Home from '../views/Home/Home'
 import AuthRoute from './middlewares/AuthRoute'
 import Authenticated from './middlewares/Authenticated'
-import Login from '../views/login/Login'
+import Login from '../views/Login/Login'
 
 const Routes = () => {
     return (
